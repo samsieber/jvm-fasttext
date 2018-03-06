@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.renjin.gcc.example</groupId>
-    <artifactId>gcc-bridge-example</artifactId>
+    <groupId>net.sieber</groupId>
+    <artifactId>jvm-fasttext</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -38,6 +38,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.renjin</groupId>
+            <artifactId>libstdcxx</artifactId>
+            <version>4.7.4-b19</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
@@ -58,10 +63,10 @@
                 <version>${gcc.bridge.version}</version>
                 <configuration>
                     <!-- Sets the package name of all generated classes -->
-                    <packageName>org.renjin.gcc.example</packageName>
+                    <packageName>net.sieber</packageName>
                     
                     <!-- If sets, generates a single class -->
-                    <mainClass>Example</mainClass>
+                    <mainClass>FastText</mainClass>
                     <!-- -->
                     <!--<importClasses>-->
                         <!--<importClass>org.renjin.math.Xerbla</importClass>-->
@@ -73,6 +78,12 @@
                             <goal>compile</goal>
                         </goals>
                         <phase>compile</phase>
+                        <configuration>
+                            <cxxFlags>
+                                <flag>-pthread</flag>
+                                <flag>-std=gnu++0x</flag>
+                            </cxxFlags>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
