@@ -163,7 +163,7 @@ void Model::findKBest(int32_t k, std::vector<std::pair<real, int32_t>>& heap,
     if (heap.size() == k && log(output[i]) < heap.front().first) {
       continue;
     }
-    heap.push_back(std::make_pair(log(output[i]), i));
+    //heap.push_back(std::make_pair(log(output[i]), i));
     std::push_heap(heap.begin(), heap.end(), comparePairs);
     if (heap.size() > k) {
       std::pop_heap(heap.begin(), heap.end(), comparePairs);
@@ -180,7 +180,7 @@ void Model::dfs(int32_t k, int32_t node, real score,
   }
 
   if (tree[node].left == -1 && tree[node].right == -1) {
-    heap.push_back(std::make_pair(score, node));
+    //heap.push_back(std::make_pair(score, node));
     std::push_heap(heap.begin(), heap.end(), comparePairs);
     if (heap.size() > k) {
       std::pop_heap(heap.begin(), heap.end(), comparePairs);
@@ -240,7 +240,7 @@ void Model::initTableNegatives(const std::vector<int64_t>& counts) {
   for (size_t i = 0; i < counts.size(); i++) {
     real c = pow(counts[i], 0.5);
     for (size_t j = 0; j < c * NEGATIVE_TABLE_SIZE / z; j++) {
-      negatives.push_back(i);
+      //negatives.push_back(i);
     }
   }
   std::shuffle(negatives.begin(), negatives.end(), rng);
@@ -254,6 +254,8 @@ int32_t Model::getNegative(int32_t target) {
   } while (target == negative);
   return negative;
 }
+
+
 
 void Model::buildTree(const std::vector<int64_t>& counts) {
   tree.resize(2 * osz_ - 1);
@@ -285,17 +287,19 @@ void Model::buildTree(const std::vector<int64_t>& counts) {
     tree[mini[1]].parent = i;
     tree[mini[1]].binary = true;
   }
+  
   for (int32_t i = 0; i < osz_; i++) {
+
     std::vector<int32_t> path;
     std::vector<bool> code;
-    int32_t j = i;
+    int32_t j = i; 
     while (tree[j].parent != -1) {
-      path.push_back(tree[j].parent - osz_);
-      code.push_back(tree[j].binary);
+      //path.push_back(tree[j].parent - osz_);
+      //code.push_back(tree[j].binary);
       j = tree[j].parent;
-    }
-    paths.push_back(path);
-    codes.push_back(code);
+    } 
+    //paths.push_back(path);
+    //codes.push_back(code);
   }
 }
 

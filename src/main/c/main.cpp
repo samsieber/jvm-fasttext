@@ -55,7 +55,6 @@ void printPredictUsage() {
     << "  <k>          (optional; 1 by default) predict top k labels\n"
     << std::endl;
 }
-
 void printPrintWordVectorsUsage() {
   std::cerr
     << "usage: fasttext print-word-vectors <model>\n\n"
@@ -79,7 +78,7 @@ void printPrintNgramsUsage() {
 }
 
 void quantize(const std::vector<std::string>& args) {
-  std::shared_ptr<Args> a = std::make_shared<Args>();
+  /*std::shared_ptr<Args> a = std::make_shared<Args>();
   if (args.size() < 3) {
     printQuantizeUsage();
     a->printHelp();
@@ -87,7 +86,7 @@ void quantize(const std::vector<std::string>& args) {
   }
   a->parseArgs(args);
   FastText fasttext;
-  fasttext.quantize(a);
+  fasttext.quantize(a);*/
   exit(0);
 }
 
@@ -231,10 +230,10 @@ void analogies(const std::vector<std::string> args) {
 }
 
 void train(const std::vector<std::string> args) {
-  std::shared_ptr<Args> a = std::make_shared<Args>();
-  a->parseArgs(args);
-  FastText fasttext;
-  fasttext.train(a);
+  //std::shared_ptr<Args> a = std::make_shared<Args>();
+  //a->parseArgs(args);
+  //FastText fasttext;
+  //fasttext.train(a);
 }
 
 int main(int argc, char** argv) {
